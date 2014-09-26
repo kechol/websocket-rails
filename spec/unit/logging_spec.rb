@@ -119,7 +119,7 @@ module WebsocketRails
     describe "#log_event?" do
       context "with an internal event" do
         before do
-          @event = Event.new(:internal, :namespace => :websocket_rails)
+          @event = Event.new(:internal, :namespace => :_system)
         end
 
         context "when WebsocketRails.config.log_internal_events? is false" do

@@ -53,7 +53,7 @@ describe 'WebSocketRails.Channel:', ->
     describe 'when this channel\'s connection is still active', ->
       it 'should send unsubscribe event', ->
         @channel.destroy()
-        expect(@dispatcher.trigger_event.args[0][0].name).toEqual 'websocket_rails.unsubscribe'
+        expect(@dispatcher.trigger_event.args[0][0].name).toEqual '_system.unsubscribe'
 
     describe 'when this channel\'s connection is no more active', ->
       beforeEach ->
@@ -82,20 +82,20 @@ describe 'WebSocketRails.Channel:', ->
       expect(@channel.is_private).toBeFalsy
 
   describe 'channel tokens', ->
-    it 'should set token when event_name is websocket_rails.channel_token', ->
-      @channel.dispatch('websocket_rails.channel_token', {token: 'abc123'})
+    it 'should set token when event_name is _system.channel_token', ->
+      @channel.dispatch('_system.channel_token', {token: 'abc123'})
       expect(@channel._token).toEqual 'abc123'
 
     it "should refresh channel's connection_id after channel_token has been received", ->
       # this is needed in case we would init the channel connection
       # just before the connection has been established
       @channel.connection_id = null
-      @channel.dispatch('websocket_rails.channel_token', {token: 'abc123'})
+      @channel.dispatch('_system.channel_token', {token: 'abc123'})
       expect(@channel.connection_id).toEqual @dispatcher._conn.connection_id
 
     it 'should flush the event queue after setting token', ->
       @channel.trigger 'someEvent', 'someData'
-      @channel.dispatch('websocket_rails.channel_token', {token: 'abc123'})
+      @channel.dispatch('_system.channel_token', {token: 'abc123'})
       expect(@channel._queue.length).toEqual(0)
 
   describe 'private channels', ->
@@ -104,7 +104,7 @@ describe 'WebSocketRails.Channel:', ->
       @event = @dispatcher.trigger_event.lastCall.args[0]
 
     it 'should trigger a subscribe_private event when created', ->
-      expect(@event.name).toEqual 'websocket_rails.subscribe_private'
+      expect(@event.name).toEqual '_system.subscribe_private'
 
     it 'should be private', ->
       expect(@channel.is_private).toBeTruthy

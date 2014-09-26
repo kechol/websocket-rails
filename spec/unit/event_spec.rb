@@ -125,8 +125,8 @@ module WebsocketRails
     end
 
     describe "#is_internal?" do
-      it "returns true if the event is namespaced under websocket_rails" do
-        event = Event.new(:internal_event, :namespace => :websocket_rails)
+      it "returns true if the event is namespaced under _system" do
+        event = Event.new(:internal_event, :namespace => :_system)
         event.is_internal?.should be_true
       end
     end

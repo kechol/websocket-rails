@@ -2,7 +2,7 @@ module WebsocketRails
   class InternalEvents
     def self.events
       Proc.new do
-        namespace :websocket_rails do
+        namespace :_system do
           subscribe :pong, :to => InternalController, :with_method => :do_pong
           subscribe :subscribe, :to => InternalController, :with_method => :subscribe_to_channel
           subscribe :unsubscribe, :to => InternalController, :with_method => :unsubscribe_to_channel

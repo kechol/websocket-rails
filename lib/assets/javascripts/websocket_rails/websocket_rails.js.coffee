@@ -137,7 +137,7 @@ class @WebSocketRails
     (typeof(WebSocket) == "function" or typeof(WebSocket) == "object")
 
   pong: =>
-    pong = new WebSocketRails.Event( ['websocket_rails.pong', {}, @_conn?.connection_id] )
+    pong = new WebSocketRails.Event( ['_system.pong', {}, @_conn?.connection_id] )
     @_conn.trigger pong
 
   connection_stale: =>

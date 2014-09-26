@@ -24,7 +24,7 @@ class WebSocketRails.Event
     typeof @result != 'undefined'
 
   is_ping: ->
-    @name == 'websocket_rails.ping'
+    @name == '_system.ping'
 
   serialize: ->
       JSON.stringify [@name, @attributes()]
