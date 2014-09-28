@@ -107,8 +107,8 @@ module WebsocketRails
         subject.subscribers << connection
       end
 
-      it "should be public by default" do
-        subject.instance_variable_get(:@private).should_not be_true
+      it "should be private by default" do
+        subject.instance_variable_get(:@private).should be_true
       end
 
       describe "#make_private" do

@@ -12,7 +12,7 @@ If you want to unbind an event, you can use the unbind function :
 ###
 class WebSocketRails.Channel
 
-  constructor: (@name, @_dispatcher, @is_private = false, @on_success, @on_failure) ->
+  constructor: (@name, @_dispatcher, @is_private = true, @on_success, @on_failure) ->
     @_callbacks = {}
     @_token = undefined
     @_queue = []
