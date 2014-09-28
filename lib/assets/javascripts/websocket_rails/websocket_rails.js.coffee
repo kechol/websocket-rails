@@ -45,9 +45,9 @@ class @WebSocketRails
 
     @state     = 'disconnected'
 
-  # Reconnects the whole connection, 
+  # Reconnects the whole connection,
   # keeping the messages queue and its' connected channels.
-  # 
+  #
   # After successfull connection, this will:
   # - reconnect to all channels, that were active while disconnecting
   # - resend all events from which we haven't received any response yet
@@ -137,7 +137,7 @@ class @WebSocketRails
     (typeof(WebSocket) == "function" or typeof(WebSocket) == "object")
 
   pong: =>
-    pong = new WebSocketRails.Event( ['_system.pong', {}, @_conn?.connection_id] )
+    pong = new WebSocketRails.Event( ['pong', {}, @_conn?.connection_id] )
     @_conn.trigger pong
 
   connection_stale: =>

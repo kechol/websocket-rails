@@ -19,7 +19,7 @@ module WebsocketRails
     end
 
     def new_on_ping(connection)
-      Event.new :ping, :data => {}, :connection => connection, :namespace => :_system
+      Event.new :ping, :data => {}, :connection => connection
     end
 
     def new_on_invalid_event_received(connection,data=nil)

@@ -3,10 +3,10 @@ module WebsocketRails
     def self.events
       Proc.new do
         namespace :_system do
-          subscribe :pong, :to => InternalController, :with_method => :do_pong
           subscribe :subscribe, :to => InternalController, :with_method => :subscribe_to_channel
           subscribe :unsubscribe, :to => InternalController, :with_method => :unsubscribe_to_channel
         end
+        subscribe :pong, :to => InternalController, :with_method => :do_pong
       end
     end
   end
