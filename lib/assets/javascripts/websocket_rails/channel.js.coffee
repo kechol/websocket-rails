@@ -16,10 +16,7 @@ class WebSocketRails.Channel
     @_callbacks = {}
     @_token = undefined
     @_queue = []
-    if @is_private
-      event_name = '_system.subscribe_private'
-    else
-      event_name = '_system.subscribe'
+    event_name = 'subscribe'
 
     @connection_id = @_dispatcher._conn?.connection_id
     event = new WebSocketRails.Event( [event_name, {data: {channel: @name}}, @connection_id], @_success_launcher, @_failure_launcher)
@@ -27,7 +24,7 @@ class WebSocketRails.Channel
 
   destroy: ->
     if @connection_id == @_dispatcher._conn?.connection_id
-      event_name = '_system.unsubscribe'
+      event_name = 'unsubscribe'
       event =  new WebSocketRails.Event( [event_name, {data: {channel: @name}}, @connection_id] )
       @_dispatcher.trigger_event event
     @_callbacks = {}
